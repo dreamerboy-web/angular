@@ -1,0 +1,44 @@
+
+
+<div class="search">
+  <h2>Task 1</h2>
+  <input (input)="search($event)" type="text" name="search" placeholder="Шо шукаємо??">
+  <button (click)="showtext()">Find</button>
+  <div *ngIf="show">
+    {{searchText}}
+  </div>
+</div>
+
+<div class="reg-log">
+
+  <div [ngSwitch]="chose">
+    <div *ngSwitchCase="0" class="registration">
+      <h3>Reg</h3>
+      <input type="text" placeholder="Name">
+      <input type="text" placeholder="Email">
+      <input type="text" placeholder="Password">
+      <input type="submit" value="GO">
+    </div>
+
+    <div *ngSwitchCase="1" class="login">
+      <h3>Log in</h3>
+      <input type="text" placeholder="Email">
+      <input type="text" placeholder="Password">
+      <input type="submit" value="GO">
+    </div>
+  </div>
+
+  <div class="chose">
+    <button (click)="singIn()">Sing in</button>
+    <button (click)="logIn()">Lod in</button>
+  </div>
+</div>
+
+<div class="houses">
+  <h2 style="margin-top: 30px; text-align: center">Task 3</h2>
+  <div *ngFor="let house of houses" class="house" style="padding: 20px; border: 2px solid green; text-align: center">
+    Type: {{house.type}} <br>
+    Prise: {{house.prise}} <br>
+    Location: {{house.location}}
+  </div>
+</div>
