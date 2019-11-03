@@ -1,0 +1,132 @@
+
+
+<div class="search">
+  <h2>Task 1</h2>
+  <input (input)="search($event)" type="text" name="search" placeholder="Шо шукаємо??">
+  <button (click)="showtext()">Find</button>
+  <div *ngIf="show">
+    {{searchText}}
+  </div>
+</div>
+
+<div class="reg-log">
+  <h3>Login/Registration(user)</h3>
+  <div [ngSwitch]="chose">
+    <div *ngSwitchCase="0" class="registration">
+      <h3>Reg</h3>
+      <form #registration = "ngForm" (ngSubmit)="singIner(registration)">
+        <label [ngStyle]="{color: name.invalid && name.touched ? 'red': 'green'}">
+          Name
+        </label>
+
+        <input required="" name="name" type="text" placeholder="Name" [(ngModel)]="regValue.name" #name = "ngModel" minlength="3"> <br>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors.minlength">
+            Name must be at least 3 characters long.
+          </div>
+
+        </div>
+        <label [ngStyle]="{color: email.invalid && email.touched ? 'red': 'green'}">
+          Email
+        </label>
+
+        <input required [ngStyle]="{border: email.invalid && email.touched ? '2px solid red': '2px solid green'}"
+               name="email" type="text" placeholder="Email" [(ngModel)]="regValue.email" email #email = "ngModel"> <br>
+        <label [ngStyle]="{color: ege.value < 18 ? 'red': 'green'}">
+          Age
+        </label>
+        <input required name="age" type="text" placeholder="Age"
+               minlength="1"
+               [(ngModel)]="regValue.age" #ege = "ngModel" onkeypress='return event.charCode >= 48 && event.charCode <= 57'> <br>
+
+        <input style="display: none" name="is_blocked"
+               type="text" placeholder="Statys"
+                [(ngModel)]="regValue.is_blocked" #statys = "ngModel" >
+        <input [disabled]="!registration.valid" type="submit" value="GO">
+      </form>
+    </div>
+
+    <div *ngSwitchCase="1" class="login">
+      <h3>Log in</h3>
+      <form #login="ngForm" (ngSubmit)="logination(login)">
+        <label [ngStyle]="{color: email.invalid && email.touched ? 'red': 'green'}">
+          Email
+        </label>
+        <input name="email" type="email" placeholder="Email" [(ngModel)]="loginValue.email"
+               required email #email="ngModel">
+        <input name="name" type="pass" placeholder="Name" [(ngModel)]="loginValue.name" required minlength="3">
+        <input [disabled]="!login.valid" type="submit" value="GO">
+      </form>
+    </div>
+  </div>
+
+  <div class="chose">
+    <button (click)="singIn()">Sing in</button>
+    <button (click)="logIn()">Lod in</button>
+  </div>
+</div>
+<div class="house_reg">
+  <h3>House registration</h3>
+  <form #houseReg = "ngForm" (ngSubmit)="houseRegistration(houseReg)">
+    <input type="text" name="type" placeholder="Type"
+           [(ngModel)]="newHouse.type" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required minlength="3">
+    <input type="text" name="prise" placeholder="Prise" [(ngModel)]="newHouse.prise" required minlength="1" >
+    <input type="text" name="location" placeholder="Location" [(ngModel)]="newHouse.location" required>
+    <input [disabled]="!houseReg.valid" type="submit" value="Go">
+  </form>
+</div>
+
+<div class="houses">
+  <h2 style="margin-top: 30px; text-align: center">Task 3</h2>
+  <div *ngFor="let house of houses; let i = index"
+       class="houses" style="padding: 20px;  text-align: center; margin-bottom: 15px">
+    <div *ngIf="house.ovner" [ngStyle]="{'border': house.ovner.is_blocked ? '2px solid red' : '5px solid green'}" class="house">
+      {{i}} <br>
+      Type: {{house.type}} <br>
+      Prise: {{house.prise}} <br>
+      Location: {{house.location}} <br>
+      <div  class="another">
+        Ovner: {{house.ovner.name}}<br>
+        Statys: {{house.ovner.is_blocked}}<br>
+        <button (click)="showAll(i) ">Show all</button>
+        <div *ngIf="i === showId" class="all">
+          Age: {{house.ovner.age}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<h2 [style.color]="error ? 'red' : 'green'">Error</h2>-->
+
+<!--<button (click)="togleErr()">Do error</button>-->
+
+<!--<div [textContent]="error ? 'Error' : 'false'">-->
+<!--  Hello-->
+<!--</div>-->
+<!--<br>-->
+<!--<br>-->
+
+<!--<div class="errors" [ngStyle]="errorsStules">-->
+<!--  some text-->
+<!--</div>-->
+
+<button (click)="showUsers()">Show Users</button>
+<div *ngIf="show" class="users">
+  <div  *ngFor="let user of users" class="user" style="padding: 20px; border: 2px solid green; text-align: center">
+    Name: {{user.name}} <br>
+    Age: {{user.age}} <br>
+    Email: {{user.email}} <br>
+    Starys: {{user.is_blocked}}
+  </div>
+</div>
+
+
+
+
+
