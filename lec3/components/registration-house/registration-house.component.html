@@ -1,0 +1,10 @@
+<div class="house_reg">
+  <h3>House registration</h3>
+  <form #houseReg = "ngForm" (ngSubmit)="houseRegistration(houseReg)">
+    <input type="text" name="type" placeholder="Type"
+           [(ngModel)]="newHouse.type" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required minlength="3">
+    <input type="text" name="prise" placeholder="Prise" [(ngModel)]="newHouse.prise" required minlength="1" >
+    <input type="text" name="location" placeholder="Location" [(ngModel)]="newHouse.location" required>
+    <input [disabled]="!houseReg.valid" type="submit" value="Go">
+  </form>
+</div>

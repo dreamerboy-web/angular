@@ -1,0 +1,10 @@
+<div
+  *ngFor="let user of users; let i = index"  (click)="clickHere(i)"
+  style="padding: 20px; border: 2px solid green; text-align: center">
+  Name: {{user.name}} <br>
+  Age: {{user.age}} <br>
+  Email: {{user.email}} <br>
+  Starys: {{user.is_blocked}}
+  <button (click)="deleteUsers()">Delete</button>
+</div>
+

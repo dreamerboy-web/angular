@@ -1,0 +1,47 @@
+
+
+<div class="search">
+  <h2>Task 1</h2>
+  <app-search></app-search>
+</div>
+<br>
+
+<h2 appTestDerective = "yellow">
+  Pipe:
+</h2>
+
+{{ 5 | testPipe: 5}}
+<br>
+<div class="reg-log">
+  <h3>Login/Registration(user)</h3>
+  <div [ngSwitch]="chose">
+    <div *ngSwitchCase="0" class="registration">
+      <app-registration-user></app-registration-user>
+    </div>
+
+    <div *ngSwitchCase="1" class="login">
+      <app-login-user></app-login-user>
+    </div>
+  </div>
+
+  <div class="chose">
+    <button (click)="singIn()">Sing in</button>
+    <button (click)="logIn()">Lod in</button>
+  </div>
+</div>
+<app-registration-house></app-registration-house>
+
+<app-all-houses></app-all-houses>
+
+
+<button (click)="showUsers()">Show Users</button>
+<div *ngIf="show" class="users">
+  <app-all-users></app-all-users>
+</div>
+
+
+
+
+
+
+

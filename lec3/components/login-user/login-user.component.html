@@ -1,0 +1,10 @@
+<h3>Log in</h3>
+<form #login="ngForm" (ngSubmit)="logination(login)">
+  <label [ngStyle]="{color: email.invalid && email.touched ? 'red': 'green'}">
+    Email
+  </label>
+  <input name="email" type="email" placeholder="Email" [(ngModel)]="loginValue.email"
+         required email #email="ngModel">
+  <input name="name" type="pass" placeholder="Name" [(ngModel)]="loginValue.name" required minlength="3">
+  <input [disabled]="!login.valid" type="submit" value="GO">
+</form>

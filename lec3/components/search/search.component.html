@@ -1,0 +1,5 @@
+<input (input)="search($event)" type="text" name="search" placeholder="Шо шукаємо??">
+<button (click)="showtext()">Find</button>
+<div *ngIf="show">
+  {{searchText}}
+</div>
